@@ -1,7 +1,7 @@
 # Art Junkies
 
 Team Members:
-              Valerie Cevallos
+              Valerie Cevallos, 
               Josue Santiago
 
 Project Description:
