@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/change-database-name';
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/Art_Junkies';
 
 mongoose
   .connect(MONGO_URI, {
