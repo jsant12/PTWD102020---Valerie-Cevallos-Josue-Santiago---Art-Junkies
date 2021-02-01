@@ -33,5 +33,6 @@ app.locals.title = 'Art Junkie';
 //      |  |  |
 //      V  V  V
 app.use('/', require('./routes/index.routes'));
+app.use('/', require('./routes/api.routes'));
 
 module.exports = app;
