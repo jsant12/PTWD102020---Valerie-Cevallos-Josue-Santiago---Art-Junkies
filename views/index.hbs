@@ -1,2 +1,11 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#if userInSession}}
+<h3>{{userInSession.username}}</h3>
+<form action="/logout" method="POST">
+<button type="submit">Logout</button>
+</form>
+{{else}}
+<button type="submit"><a href="auth/login">Login</a></button>
+<button type="submit"><a href="auth/register">Register</a></button>
+{{/if}}
