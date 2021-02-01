@@ -11,12 +11,6 @@ const app = express();
 
 // require database configuration
 require('./configs/db.config');
-app.use(cookieParser());
-require('./configs/session.config')(app);
-
-//global variable for userInSession
-const bindUserToLocals = require('./configs/user-locals.config');
-app.use(bindUserToLocals);
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -39,6 +33,6 @@ app.locals.title = 'Art Junkie';
 //      |  |  |
 //      V  V  V
 app.use('/', require('./routes/index.routes'));
-app.use('/', require('./routes/auth.routes'));
+app.use('/', require('./routes/api.routes'));
 
 module.exports = app;
