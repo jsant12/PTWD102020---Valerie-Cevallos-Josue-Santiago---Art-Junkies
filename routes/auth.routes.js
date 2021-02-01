@@ -75,22 +75,23 @@ router.get('/auth/login', (req, res, next) => {
 
 //Login form for user POST to DB
 router.post('/login', (req, res, next) => {
-  const { username, passwordHash } = req.body;
+  const { username, password } = req.body;
 
-  if (!username || !passwordHash) {
+  if (!username || !password) {
+    console.log(req.body);
     res.render('auth/login.hbs', {
-      errorMessage: 'Please enter both a username and password.'
+      errorMessage: 'Login incorrect, please check your credentials and try again.'
     });
     return;
   }
 
 //retrieve user from DB
-  User.findOne({ email })
+  User.findOne({ username })
     .then((responseFromDB) => {
 
       if (!responseFromDB) {
         res.render('auth/login.hbs', { errorMessage: 'Username does not exist. Please try again.' });
-      } else if (bcryptjs.compareSync(userPassword, responseFromDB.passwordHash)) {
+      } else if (bcryptjs.compareSync(password, responseFromDB.passwordHash)) {
 
         req.session.currentUser = responseFromDB;
 
