@@ -1,0 +1,8 @@
+{{#if userInSession}}
+    <h3>Welcome, {{userInSession.username}} </h3>
+{{else}}
+    <b>No user is logged in!<b>
+{{/if}}
+
+
+<a href="/profile"> Refresh </a>
