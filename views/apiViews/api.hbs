@@ -1,0 +1,8 @@
+<h2>API Data Test</h2>
+
+{{#each apiValue}}
+  <h4>Title: {{title}}</h4>
+  <p>Artist(s): {{principalOrFirstMaker}}</p>
+  
+  <a href="{{webImage.url}}" target="_blank"><img src="{{webImage.url}}" width="150px" alt=""></a>
+{{/each}}
