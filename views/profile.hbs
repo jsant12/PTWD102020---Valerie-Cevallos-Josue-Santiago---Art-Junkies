@@ -1,5 +1,8 @@
 {{#if userInSession}}
     <h3>Welcome, {{userInSession.username}} </h3>
+<form action="/logout" method="POST">
+<button type="submit">Logout</button>
+</form>
 {{else}}
     <b>No user is logged in!<b>
 {{/if}}

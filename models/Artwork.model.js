@@ -1,13 +1,30 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
-const modelSchema = new Schema(
+const ArtworkSchema = new Schema(
   {
-    // model properties
+    title: {
+      type: {},
+      required: true
+    },
+    artist: {
+      type: {},
+      required: true
+    },
+    description: {
+      type: String
+    },
+    medium: {
+      type: String
+    },
+    image: {
+      type: {},
+      required: true
+    }
   },
   {
     timestamps: true
   }
 );
 
-module.exports = model('Model', modelSchema);
+module.exports = model('Artwork', artworkSchema);
