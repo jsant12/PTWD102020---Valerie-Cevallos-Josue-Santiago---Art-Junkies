@@ -2,23 +2,13 @@ const mongoose = require('mongoose');
 const {Schema, model} = mongoose;
 
 const gallerySchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
+//these keys will pull in all the information by ObjectId from the respective collection
 
-  artist: {
-    type: {},
-    required: true
-  },
-
-  images: {
-    type: String,
-    required: true
-  }
-
-  // model properties
-}, {
+  title: [{type: Schema.Types.ObjectId, ref: 'Artwork'}],
+  artist: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  image: [{type: Schema.Types.ObjectId, ref: 'Artwork'}],
+}, 
+{
   timestamps: true
 });
 
