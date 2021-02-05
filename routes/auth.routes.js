@@ -25,7 +25,7 @@ router.post('/register', (req, res, next) => {
   console.log(req.body)
   const { username, email, fname, lname, password } = req.body;
 
-  if (!username || !email || !fname || !lname || !password) {
+  if (!username || !email || !fname || !password) {
     res.render('auth/register.hbs', {
       errorMessage: 'All fields are required. Please enter in the requested information.'
     });
@@ -51,7 +51,9 @@ router.post('/register', (req, res, next) => {
         fname,
         lname,
         passwordHash: hashedPassword
-      }).then((userFromDB) => {
+      })
+      
+      .then((userFromDB) => {
         res.redirect("/profile");
       });
     })
