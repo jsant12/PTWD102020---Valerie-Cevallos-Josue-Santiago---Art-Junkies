@@ -1,7 +1,12 @@
+<h2>Profile Information</h2>
 {{#if userInSession}}
     <h3>Welcome, {{userInSession.username}} </h3>
-<form action="/logout" method="POST">
-<button type="submit">Logout</button>
+<form action="/update" method="POST" enctype="multipart/form-data">
+<label>Profile Picture:
+    <input type="file" name="profilePicture">
+</label><br>
+<button type="submit">Update Profile</button>
+{{!-- <button type="submit">Logout</button> --}}
 </form>
 {{else}}
     <p>><a href="auth/login.hbs">Return to Login Page</a></p>

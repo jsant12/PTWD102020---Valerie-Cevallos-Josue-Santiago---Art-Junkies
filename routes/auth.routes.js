@@ -15,6 +15,9 @@ const saltRounds = 10;
 //routeGuard import
 const routeGuard = require('../configs/route-guard.config');
 
+//require file uploader for profilePic
+const fileUploader = require('../configs/cloudinary.config')
+
 //*************** REGISTER ***************/
 
 router.get('/auth/register', (req, res, next) => {
@@ -53,8 +56,8 @@ router.post('/register', (req, res, next) => {
         passwordHash: hashedPassword
       })
       
-      .then((userFromDB) => {
-        res.redirect("/profile");
+      .then(() => {
+        res.redirect('/profile');
       });
     })
     .catch((err) => {
@@ -117,8 +120,14 @@ router.post('/logout', (req, res, next) => {
 
 //*************** PROFILE ***************/
 
-router.get("/profile", routeGuard, (req, res, next) => {
-  res.render("profile.hbs");
+router.get('/profile', routeGuard, (req, res, next) => {
+  res.render('profile.hbs');
+});
+
+router.post('/update', fileUploader.single('profilePicture'), (req, res, next) => {
+console.log('is image uploaded: ', req.file);
+const {req.file}
+User.
 });
 
 module.exports = router;
