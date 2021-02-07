@@ -41,5 +41,6 @@ app.locals.title = 'Art Junkie';
 app.use('/', require('./routes/index.routes'));
 app.use('/', require('./routes/api.routes'));
 app.use('/', require('./routes/auth.routes'));
-
+app.use('/', require('./routes/profile.routes'));
+app.use('/', require('./routes/upload.routes'));
 module.exports = app;

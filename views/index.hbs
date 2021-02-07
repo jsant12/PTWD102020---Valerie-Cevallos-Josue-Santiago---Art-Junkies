@@ -2,8 +2,13 @@
 <p>Welcome to {{title}}</p>
 {{#if userInSession}}
 <h3>{{userInSession.username}}</h3>
+<form action="/profile" method="GET">
+<button type="submit">Profile</button>
+</form>
 <form action="/logout" method="POST">
-<button type="submit">Logout</button>
+  <button type="submit">
+    Logout
+  </button>
 </form>
 {{else}}
 <button type="submit"><a href="auth/login">Login</a></button>

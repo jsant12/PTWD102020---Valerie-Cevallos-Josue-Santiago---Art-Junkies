@@ -11,7 +11,7 @@ router.get("/api", function (req, res, next) {
       responseFromAPI.data.artObjects.forEach(e => {
       const {title, principalOrFirstMaker, webImage:{url}} = e;
       console.log("****",title, principalOrFirstMaker, url)
-      })
+      });
       res.render('apiViews/api', {apiValue: responseFromAPI.data.artObjects})
     })
     .catch((err)=>console.log(err))
