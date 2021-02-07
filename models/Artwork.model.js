@@ -9,7 +9,9 @@ const artworkSchema = new Schema(
       required: true
     },
     //this key will be used to pull in the artist's full name from the Profile collection
-    artist: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    artist: {
+      type:Schema.Types.ObjectId, ref: 'User'},
+      
     
     description: {
       type: String

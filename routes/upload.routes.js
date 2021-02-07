@@ -22,7 +22,7 @@ router.get("/upload", (req, res, next) => {
     res.render('upload');
 });
 
-//****CREATE****/
+//****CREATE****//
 router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
@@ -30,7 +30,8 @@ router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) =>
   console.log("do i have it: ", req.file);
   console.log("------> ", req.body);
 
-  const { artist, title, medium, description, image } = req.body;
+  
+  const { artist = (req.session.currentUser._id), title, medium, description, image } = req.body;
 
   Artwork.create({ artist, title, medium, description, image: req.file.path })
     .then((newUpload) => {
@@ -38,6 +39,8 @@ router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) =>
     })
     .catch((err) => console.log("Error while creating artwork: ", err));
 });
+
+//****UPDATE****//
 
 
 module.exports = router;
