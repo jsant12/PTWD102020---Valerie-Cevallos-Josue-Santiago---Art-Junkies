@@ -115,10 +115,4 @@ router.post('/logout', (req, res, next) => {
   res.redirect("/");
 });
 
-//*************** PROFILE ***************/
-
-router.get("/profile", routeGuard, (req, res, next) => {
-  res.render("profile.hbs");
-});
-
 module.exports = router;

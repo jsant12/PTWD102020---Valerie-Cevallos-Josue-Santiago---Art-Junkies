@@ -1,5 +1,23 @@
 {{#if userInSession}}
-    <h3>Welcome, {{userInSession.username}} </h3>
+    <h3>Welcome, {{userInSession.fname}} </h3>
+    
+    <form action="/profile" method="POST">
+    <p>
+      Login: {{userInSession.username}}
+      <br>
+      First Name: {{userInSession.fname}}
+      <br>
+      Last Name: {{userInSession.lname}}
+      <br>
+      Email: {{userInSession.email}}
+      <br>
+    
+      </p>
+      <br>
+      <br>
+    </form>
+    
+
 <form action="/logout" method="POST">
 <button type="submit">Logout</button>
 </form>
@@ -8,5 +26,12 @@
     <p><a href="auth/register.hbs">Register Now</a></p>
 {{/if}}
 
+<form action="/profile-edit" method="GET">
+<button type="submit">Edit Profile</button>
+</form>
+
+<form action="/upload" method="GET">
+  <button type="submit">Start Uploading!</button>
+</form>
 
 <a href="/profile"> Refresh </a>
