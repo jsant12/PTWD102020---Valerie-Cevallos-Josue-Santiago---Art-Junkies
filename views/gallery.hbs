@@ -1,0 +1,23 @@
+{{#each validImages}}
+<div>
+  <img src="" alt="">
+{{#if editable}}
+<form action="/gallery/delete/{{this._id}}" method="POST">
+<button>X</button>
+</form>
+{{/if}}
+  {{#if editable}}
+<form action="/gallery/edit/{{this._id}}">
+  <input type="text" value="{{galleryImage.title}}">
+  <button>Update</button>
+</form>
+  {{else}}
+  <h3>{{galleryImage.title}}</h3>
+  {{/if}}
+</div>
+{{/each}}
+
+  {{!-- //filter - check all images in gallery, if any are undefined remove from view before displaying 
+ 
+  display the array of validImages (separate array of images)
+  --}}

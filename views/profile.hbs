@@ -1,17 +1,38 @@
 <h2>Profile Information</h2>
 {{#if userInSession}}
-    <h3>Welcome, {{userInSession.username}} </h3>
-<form action="/update" method="POST" enctype="multipart/form-data">
-<label>Profile Picture:
-    <input type="file" name="profilePicture">
-</label><br>
-<button type="submit">Update Profile</button>
-{{!-- <button type="submit">Logout</button> --}}
+    <h3>Welcome, {{userInSession.fname}} </h3>
+    
+    <form action="/profile" method="POST">
+    <p>
+      Login: {{userInSession.username}}
+      <br>
+      First Name: {{userInSession.fname}}
+      <br>
+      Last Name: {{userInSession.lname}}
+      <br>
+      Email: {{userInSession.email}}
+      <br>
+    
+      </p>
+      <br>
+      <br>
+    </form>
+    
+
+<form action="/logout" method="POST">
+<button type="submit">Logout</button>
 </form>
 {{else}}
     <p>><a href="auth/login.hbs">Return to Login Page</a></p>
     <p><a href="auth/register.hbs">Register Now</a></p>
 {{/if}}
 
+<form action="/profile-edit" method="GET">
+<button type="submit">Edit Profile</button>
+</form>
+
+<form action="/upload" method="GET">
+  <button type="submit">Start Uploading!</button>
+</form>
 
 <a href="/profile"> Refresh </a>

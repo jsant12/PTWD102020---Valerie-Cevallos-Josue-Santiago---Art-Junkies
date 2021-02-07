@@ -1,0 +1,37 @@
+{{#if userInSession}}
+    <h3>Welcome, {{userInSession.fname}} </h3>
+    
+
+    
+    <form action="/profile-edit" method="POST">
+<label>
+  First Name:
+  <input type="text" name="fname" value="{{userInSession.fname}}" />
+</label>
+<br>
+<label>
+  Last Name:
+  <input type="text" name="lname" value="{{userInSession.lname}}" />
+</label>
+<br>
+<label>
+  Email:
+  <input type="text" name="email" value="{{userInSession.email}}" />
+</label>
+      <br>
+      <br>
+      <button type="submit">Sumbit</button>
+      
+    </form>
+<form action="/logout" method="POST">
+<button type="submit">Logout</button>
+</form>
+{{else}}
+    <b>No user is logged in!<b>
+{{/if}}
+
+<form action="/profile-delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+
+<a href="/profile"> Refresh </a>

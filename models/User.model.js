@@ -21,6 +21,7 @@ const userSchema = new Schema(
       required: [true, 'First name is required']
     },
     lname: String,
+    
     passwordHash: {
       type: String,
       required: [true, 'Password is required']

@@ -3,9 +3,12 @@ const {Schema, model} = mongoose;
 
 const gallerySchema = new Schema({
 //these keys will pull in all the information by ObjectId from the respective collection
-
-  title: [{type: Schema.Types.ObjectId, ref: 'Artwork'}],
-  artist: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  galleryTitle: {type: String},
+  galleryDescription: {type: String},
+  galleryTheme: {type: String},
+  // title: [{type: Schema.Types.ObjectId, ref: 'Artwork'}],
+  // in gallery details route create key for the hbs { editable: galleyFromDb.author === req.session.currentUser._id, galleryFromDb }
+  author: {type: Schema.Types.ObjectId, ref: 'User'}, //get current user of session and plug in the current _id to compare if the page is editable
   image: [{type: Schema.Types.ObjectId, ref: 'Artwork'}],
 }, 
 {

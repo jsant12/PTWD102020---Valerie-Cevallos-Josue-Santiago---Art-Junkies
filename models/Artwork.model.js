@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
-const ArtworkSchema = new Schema(
+const artworkSchema = new Schema(
   {
     //this key will be used to pull in the artwork's title from the Gallery collection
     title: { 
@@ -10,6 +10,7 @@ const ArtworkSchema = new Schema(
     },
     //this key will be used to pull in the artist's full name from the Profile collection
     artist: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    
     description: {
       type: String
     },
