@@ -27,7 +27,8 @@ const userSchema = new Schema(
       required: [true, 'Password is required']
     },
     profilePicture: {
-      type: String
+      type: String,
+      default: 'https://res.cloudinary.com/cruisemate/image/upload/v1612494865/profilePics/wrskr7pdp24ukwlo9gfq.jpg'
     },
   },
   {
