@@ -24,13 +24,15 @@
         <br>
         <br>
         <br>
-      <button type="submit">Submit</button>
+      <button type="submit">Submit</button>      
       </form>
-    
-      <form action="/logout" method="POST">
-      <button type="submit">Logout</button>
-      
-      </form>
+
+{{#each artworkFromDB}}
+<h3>Title: {{ title }}</h3>
+<h4>Description: {{ description }}</h4>
+<img src="{{image}}" width="200px" alt="ProfilePic">
+{{/each}}
+
 {{else}}
       <b>No user is logged in!<b>
 {{/if}}
@@ -39,6 +41,6 @@
       <button type="submit">Delete</button>
     </form>
 
-    <a href="/profile"> Refresh </a>
+    <a href="/upload"> Refresh </a>
 
 

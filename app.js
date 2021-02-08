@@ -43,4 +43,5 @@ app.use('/', require('./routes/api.routes'));
 app.use('/', require('./routes/auth.routes'));
 app.use('/', require('./routes/profile.routes'));
 app.use('/', require('./routes/upload.routes'));
+app.use('/', require('./routes/gallery.routes'));
 module.exports = app;

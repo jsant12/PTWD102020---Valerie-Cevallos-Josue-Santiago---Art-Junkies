@@ -19,7 +19,14 @@ router.get("/upload", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-    res.render('upload');
+  Artwork.find({ artist: req.session.currentUser}) 
+  .then((artworkFromDB) => {
+    res.render('upload', { artworkFromDB })
+  })
+  // console.log(galleryFromDB)
+  .catch((err) => console.log('Error, ', err))
+    
+  // res.render('upload');
 });
 
 //****CREATE****//
