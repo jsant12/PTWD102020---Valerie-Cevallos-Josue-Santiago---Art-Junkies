@@ -1,0 +1,33 @@
+{{#if userInSession}}
+    <h3>Welcome, {{userInSession.fname}} </h3>
+    <div>Create a new Gallery</div>
+  
+<form action="/gallery-new" method="POST">
+<label>
+  Gallery Title:
+  <input type="text" name="galleryTitle"/>
+</label>
+<br>
+<label>
+  Gallery Description:
+  <input type="text" name="galleryDescription"/>
+</label>
+<br>
+<label>
+  Gallery Theme:
+  <input type="text" name="galleryTheme"/>
+</label>
+      <br>
+      <br>
+<button type="submit">Sumbit</button>
+      
+</form>
+{{else}}
+    <b>No user is logged in!<b>
+{{/if}}
+
+<form action="/gallery-delete" method="POST">
+  <button type="submit">Delete Gallery</button>
+</form>
+
+<a href="/profile"> Return to Profile Page </a>

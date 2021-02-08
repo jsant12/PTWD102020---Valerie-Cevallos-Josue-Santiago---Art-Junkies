@@ -1,6 +1,13 @@
-{{#each validImages}}
+  {{!-- {{#each galleryFromDB}}
+<h3>Title: {{ galleryTitle }}</h3>
+<h4>Description: {{ galleryDescription }}</h4>
+<h5>Theme: {{ galleryTheme}}</h5>
+<img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic">
+  {{/each}} --}}
+
+{{!-- {{#each validImages}}
 <div>
-  <img src="" alt="">
+  <img src="{{" alt="">
 {{#if editable}}
 <form action="/gallery/delete/{{this._id}}" method="POST">
 <button>X</button>
@@ -15,9 +22,8 @@
   <h3>{{galleryImage.title}}</h3>
   {{/if}}
 </div>
-{{/each}}
+{{/each}} --}}
 
-  {{!-- //filter - check all images in gallery, if any are undefined remove from view before displaying 
- 
-  display the array of validImages (separate array of images)
+  {{!-- //filter - check all images in gallery, if any are undefined remove from view before displaying
+  {{!-- display the array of validImages (separate array of images)
   --}}
