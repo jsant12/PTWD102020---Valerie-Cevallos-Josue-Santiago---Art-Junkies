@@ -34,7 +34,7 @@ router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) =>
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-  console.log("do i have it: ", req.file);
+  console.log(req.file);
   console.log("------> ", req.body);
 
   
@@ -48,6 +48,32 @@ router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) =>
 });
 
 //****UPDATE****//
+router.get("/upload-edit/:artworkId", (req, res, next) => {
+  if(!req.session.currentUser) {
+    res.redirect('/auth/login');
+  }
+  Artwork.findById(req.params.artworkId) 
+  .then((artworkFromDB) => {
+    // console.log(galleryFromDB)
+    res.render('upload-edit', { artworkFromDB })
+  })
+  
+  .catch((err) => console.log('Error, ', err))
+    
+  // res.render('upload');
+});
 
+router.post("/upload-edit", (req, res, next) => {
+  if(!req.session.currentUser) {
+    res.redirect('/auth/login');
+  }
+  Artwork.findByIdAndUpdate(req.session.currentUser._id, req.body,{new:true})
+  .then((foundArtFromDB) => {
+    console.log("---------------",{foundArtFromDB});
+    
+    res.redirect('/upload');
+  })
+  .catch((err) => console.log("Error pulling User ID: ", err));
+});
 
 module.exports = router;
