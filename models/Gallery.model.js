@@ -3,7 +3,9 @@ const {Schema, model} = mongoose;
 
 const gallerySchema = new Schema({
 //these keys will pull in all the information by ObjectId from the respective collection
-  galleryTitle: {type: String},
+  galleryTitle: {
+    type: String,
+    default: 'My Gallery'},
   galleryDescription: {type: String},
   galleryTheme: {type: String},
   // title: [{type: Schema.Types.ObjectId, ref: 'Artwork'}],

@@ -1,21 +1,21 @@
 {{#if userInSession}}
     <h3>Welcome, {{userInSession.fname}} </h3>
-    <div>Create a new Gallery</div>
+    <div>Edit Current Gallery</div>
   
-<form action="/gallery-new/" method="POST">
+<form action="/gallery-edit/" method="POST">
 <label>
   Gallery Title:
-  <input type="text" name="galleryTitle"/>
+  <input type="text" name="galleryTitle" value="{{galleryFromDB.galleryTitle}}"/>
 </label>
 <br>
 <label>
   Gallery Description:
-  <textarea name="galleryDescription"></textarea>
+  <textarea name="galleryDescription">{{galleryFromDB.galleryDescription}}</textarea>
 </label>
 <br>
 <label>
   Gallery Theme:
-  <input type="text" name="galleryTheme"/>
+  <input type="text" name="galleryTheme" value="{{galleryFromDB.galleryTheme}}"/>
 </label>
       <br>
       <br>
