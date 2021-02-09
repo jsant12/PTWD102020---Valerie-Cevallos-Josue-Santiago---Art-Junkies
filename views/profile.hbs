@@ -13,15 +13,10 @@
       Email: {{userInSession.email}}
       <br>
       Profile Picture: <img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic">
-      <br>
-    
-      </p>
-      <br>
-      <br>
+    </p>
     </form>
-    
 
-<form action="/logout" method="POST">
+    <form action="/logout" method="POST">
 <button type="submit">Logout</button>
 </form>
 {{else}}
@@ -34,7 +29,26 @@
 </form>
 
 <form action="/upload" method="GET">
-  <button type="submit">Start Uploading!</button>
+  <button type="submit">Upload you Art!</button>
 </form>
+      
+      <hr>
+      <h3>Gallery Information</h3>
+      <form action="/gallery-new" method="GET">
+      <button type="submit">Create New Gallery</button>
+      </form>
+      <br>
+      {{#each galleryFromDB}}
+      <div>Gallery Name: {{this.galleryTitle}}
+      <br>
+      Gallery Description: {{this.galleryDescription}}
+      <br>
+      Gallery Theme: {{this.galleryTheme}}
+      <br>
+      <form action="/gallery-edit/{{this._id}}" method="GET"><button>Edit</button></form>
+      <form action="/gallery-delete/{{this._id}}" method="GET"><button>Delete</button></form>
+      </div>
+      <hr>
+      {{/each}}
 
 <a href="/profile"> Refresh </a>

@@ -12,6 +12,7 @@ const fileUploader = require("../configs/cloudinary.config");
 //userModel import
 const User = require('../models/User.model');
 const Artwork = require('../models/Artwork.model');
+const Gallery = require('../models/Gallery.model')
 
 //*************** PROFILE ***************//
 
@@ -20,7 +21,12 @@ router.get("/profile", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-    res.render('profile');
+  Gallery.find({ author: req.session.currentUser} )
+  .then((galleryFromDB) => {
+    console.log({galleryFromDB})
+    res.render('profile', { galleryFromDB })
+  })
+  .catch((err) => console.log('Error retrieving Gallery Information', err))
 });
 
 //****UPDATE****//
@@ -42,6 +48,13 @@ router.post("/profile-edit", (req, res, next) => {
     res.redirect('/profile');
   })
   .catch((err) => console.log("Error pulling User ID: ", err));
+
+  Gallery.find({ author: req.session.currentUser} )
+  .then((galleryFromDB) => {
+    console.log({galleryFromDB})
+    res.render('profile', { galleryFromDB })
+  })
+  .catch((err) => console.log('Error Updating Gallery Info: ', err))
 });
 
 //****DELETE****//

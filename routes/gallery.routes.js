@@ -15,9 +15,9 @@ const fileUploader = require("../configs/cloudinary.config");
 // const validImages = gallery.images.filter(image => image !== undefined)
 
 router.get("/gallery", (req, res, next) => {
-  if(!req.session.currentUser) {
-    res.redirect('/auth/login');
-  }
+  // if(!req.session.currentUser) {
+  //   res.redirect('/auth/login');
+  // }
   Gallery.find() 
   .then((galleryFromDB) => {
     res.render('gallery', { galleryFromDB })
@@ -37,7 +37,7 @@ router.get('/gallery-new', (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-    res.render('gallery-new', {userInSession: req.session.currentUser});
+    res.render('gallery-new');
   })
 
 router.post('/gallery-new', (req, res, next) => {
@@ -48,9 +48,33 @@ router.post('/gallery-new', (req, res, next) => {
     console.log(req.body);
     Gallery.create({ galleryTitle, galleryDescription, galleryTheme, author: req.session.currentUser._id })
     .then(() => {
-      res.redirect('/gallery');
+      res.redirect('/profile');
     })
     .catch((err) => console.log('Error creating new Gallery: ', err))
   });
+
+  router.get('/gallery-edit/:galleryId', (req, res, next) => {
+    if(!req.session.currentUser) {
+      res.redirect('/gallery');
+    }
+    Gallery.findById(req.params.galleryId)
+    .then((galleryFromDB) => {
+      res.render('gallery-edit', { galleryFromDB })
+    })
+    .catch((err) => console.log('error retrieving the Gallery', err))
+  })
+
+  router.post('/gallery-edit/', (req, res, next) => {
+    if(!req.session.currentUser) {
+      res.redirect('/gallery');
+    }
+
+    const { galleryTitle, galleryDescription, galleryTheme } = req.body
+    Gallery.findByIdAndUpdate(this._id, { galleryTitle, galleryDescription, galleryTheme }, {new:true})
+    .then(() => {
+      res.redirect('/profile')
+    })
+    .catch((err) => console.log('error Editing the Gallery', err))
+  })
 
   module.exports = router;
