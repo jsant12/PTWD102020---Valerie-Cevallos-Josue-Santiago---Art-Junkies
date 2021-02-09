@@ -53,6 +53,8 @@ router.post('/gallery-new', (req, res, next) => {
     .catch((err) => console.log('Error creating new Gallery: ', err))
   });
 
+//***********EDIT/UPDATE GALLERY***********/
+//render edit page
   router.get('/gallery-edit/:galleryId', (req, res, next) => {
     if(!req.session.currentUser) {
       res.redirect('/gallery');
@@ -64,17 +66,26 @@ router.post('/gallery-new', (req, res, next) => {
     .catch((err) => console.log('error retrieving the Gallery', err))
   })
 
-  router.post('/gallery-edit/', (req, res, next) => {
+//post edits to DB  
+  router.post('/gallery-edit/:galleryId', (req, res, next) => {
     if(!req.session.currentUser) {
-      res.redirect('/gallery');
+      res.redirect('/auth/login');
     }
 
     const { galleryTitle, galleryDescription, galleryTheme } = req.body
-    Gallery.findByIdAndUpdate(this._id, { galleryTitle, galleryDescription, galleryTheme }, {new:true})
-    .then(() => {
+    Gallery.findByIdAndUpdate(req.params.galleryId, { galleryTitle, galleryDescription, galleryTheme }, {new: true})
+    .then((updatedGallery) => {
+      console.log('******updated', updatedGallery)
       res.redirect('/profile')
     })
     .catch((err) => console.log('error Editing the Gallery', err))
   })
+
+  //***********DELETE GALLERY***********/
+  router.post('/gallery-delete/:galleryId', (req, res, next) => {
+    Gallery.findByIdAndRemove(req.params.galleryId)
+    .then(() => res.redirect('/profile'))
+    .catch((err) => console.log('Error deleting the gallery', err))
+  });
 
   module.exports = router;
