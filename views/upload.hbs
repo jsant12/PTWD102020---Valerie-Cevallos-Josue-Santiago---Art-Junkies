@@ -31,15 +31,25 @@
 <h3>Title: {{ title }}</h3>
 <h4>Description: {{ description }}</h4>
 <img src="{{image}}" width="200px" alt="ProfilePic">
+<form action="/upload-edit/{{this._id}}" method="GET">
+  <button type="submit">
+    Edit
+  </button>
+</form>
+<br>
+<form action="/upload-delete" method="POST">
+  <button type="submit">
+    Delete
+  </button>
+</form>
 {{/each}}
 
 {{else}}
       <b>No user is logged in!<b>
 {{/if}}
 
-    <form action="/artwork-delete" method="POST">
-      <button type="submit">Delete</button>
-    </form>
+
+
 
     <a href="/upload"> Refresh </a>
 

@@ -1,0 +1,31 @@
+{{#if userInSession}}
+    <h3>Welcome, {{userInSession.fname}} </h3>
+
+        <form action="/upload-edit" method="GET">
+    <p>
+      Artist Name: {{userInSession.fname}} {{userInSession.lname}}
+      <br>
+      Artist Persona: {{userInSession.username}}
+    </p>
+    </form>
+
+    <form action="/upload-edit" method="POST" enctype="multipart/form-data">
+      <label>Title: <input type="text" name="title" value="{{artworkFromDB.title}}" />
+      </label>
+        <br>
+        <label>Description: <textarea name="description" cols="40" rows="5" maxlength="140">{{artworkFromDB.description}}</textarea>
+        </label>
+        <br>
+        <br>
+        <br>
+      </form>
+
+{{else}}
+      <b>No user is logged in!<b>
+{{/if}}
+
+    <form action="/upload-delete" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+
+    <a href="/upload"> Refresh </a>
