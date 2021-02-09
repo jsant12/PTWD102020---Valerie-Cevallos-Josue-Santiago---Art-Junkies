@@ -63,17 +63,24 @@ router.get("/upload-edit/:artworkId", (req, res, next) => {
   // res.render('upload');
 });
 
-router.post("/upload-edit", (req, res, next) => {
+router.post("/upload-edit/:artworkId", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-  Artwork.findByIdAndUpdate(req.session.currentUser._id, req.body,{new:true})
-  .then((foundArtFromDB) => {
-    console.log("---------------",{foundArtFromDB});
+  const{ title, description }=req.body;
+  Artwork.findByIdAndUpdate(req.params.artworkId,{ title, description },{new:true})
+  .then((updatedArtFromDB) => {
+    console.log("---------------",{updatedArtFromDB});
     
     res.redirect('/upload');
   })
-  .catch((err) => console.log("Error pulling User ID: ", err));
+  .catch((err) => console.log("Error updating artwork: ", err));
 });
 
+router.post('/upload-delete/:artworkId', (req, res, next) => {
+    Artwork.findByIdAndRemove(req.params.artworkId)
+    .then(() => res.redirect('/upload'))
+    .catch((err) => console.log('Error deleting artwork', err))
+  });
+  
 module.exports = router;
