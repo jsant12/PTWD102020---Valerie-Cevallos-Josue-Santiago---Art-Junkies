@@ -1,9 +1,17 @@
-  {{!-- {{#each galleryFromDB}}
-<h3>Title: {{ galleryTitle }}</h3>
-<h4>Description: {{ galleryDescription }}</h4>
-<h5>Theme: {{ galleryTheme}}</h5>
-<img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic">
-  {{/each}} --}}
+<h2>Gallery</h2>
+<h3>Title: {{ galleryFromDB.galleryTitle }}</h3>
+<h4>Description: {{ galleryFromDB.galleryDescription }}</h4>
+<h5>Theme: {{ galleryFromDB.galleryTheme }}</h5>
+
+<div>
+  {{#each galleryFromDB.image}}
+  Title: {{title}}
+  
+  <img src="{{title}}"
+  {{/each}}
+</div>
+
+
 
 {{!-- {{#each validImages}}
 <div>
@@ -27,3 +35,5 @@
   {{!-- //filter - check all images in gallery, if any are undefined remove from view before displaying
   {{!-- display the array of validImages (separate array of images)
   --}}
+
+  
