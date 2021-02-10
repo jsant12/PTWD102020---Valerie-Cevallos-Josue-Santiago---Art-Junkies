@@ -32,20 +32,28 @@ router.get("/gallery", (req, res, next) => {
 
 });
 
+//*****************CREATE GALLERY*************/
+
 router.get('/gallery-new', (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-    res.render('gallery-new');
+  Artwork.find({artist: req.session.currentUser})
+    .then((artworkFromDB) => {
+      res.render("gallery-new", { artworkFromDB });
+    })
+    .catch((err) => console.log("Error displaying stuff", err));
+    
   })
 
 router.post('/gallery-new', (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-    const { galleryTitle, galleryDescription, galleryTheme } = req.body;
+
+    const { galleryTitle, galleryDescription, galleryTheme, image } = req.body;
     console.log(req.body);
-    Gallery.create({ galleryTitle, galleryDescription, galleryTheme, author: req.session.currentUser._id })
+    Gallery.create({ galleryTitle, galleryDescription, galleryTheme, image, author: req.session.currentUser._id })
     .then(() => {
       res.redirect('/profile');
     })
@@ -60,19 +68,19 @@ router.post('/gallery-new', (req, res, next) => {
     }
     Gallery.findById(req.params.galleryId)
     .then((galleryFromDB) => {
-      // Artwork.find().then((allArtwork) => {
-      //   allArtwork.forEach((singleArtwork) => {
-      //     galleryFromDB.image.forEach((onePieceOfArt) => {
-      //       if(singleArtwork._id.equals(onePieceOfArt)) {
-      //         singleArtwork.isInGallery = true;
-      //       }
-      //     })
-      //   })
-      // })
-      res.render('gallery-edit', { galleryFromDB })
-    })
-    .catch((err) => console.log('error retrieving the Gallery', err))
+      Artwork.find({ artist: req.session.currentUser }).then((allArtwork) => {
+        allArtwork.forEach((singleArtwork) => {
+          galleryFromDB.image.forEach((onePieceOfArt) => {
+            if (singleArtwork._id.equals(onePieceOfArt)) {
+              singleArtwork.isInGallery = true;
+            }
+          });
+        });
+      res.render('gallery-edit', { galleryFromDB, allArtwork });
+    });
   })
+    .catch((err) => console.log('error retrieving the Gallery', err));
+  });
 
 //post edits to DB  
   router.post('/gallery-edit/:galleryId', (req, res, next) => {
@@ -80,10 +88,9 @@ router.post('/gallery-new', (req, res, next) => {
       res.redirect('/auth/login');
     }
 
-    const { galleryTitle, galleryDescription, galleryTheme } = req.body
-    Gallery.findByIdAndUpdate(req.params.galleryId, { galleryTitle, galleryDescription, galleryTheme }, {new: true})
+    const { galleryTitle, galleryDescription, galleryTheme, image } = req.body
+    Gallery.findByIdAndUpdate(req.params.galleryId, { galleryTitle, galleryDescription, galleryTheme, image }, {new: true})
     .then((updatedGallery) => {
-      console.log('******updated', updatedGallery)
       res.redirect('/profile')
     })
     .catch((err) => console.log('error Editing the Gallery', err))
