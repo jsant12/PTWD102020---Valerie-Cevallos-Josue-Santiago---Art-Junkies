@@ -18,8 +18,17 @@
   <input type="text" name="galleryTheme" value="{{galleryFromDB.galleryTheme}}"/>
 </label>
 
-<label>Add Image to Gallery:
-</label>  
+{{!-- <label for="">Add Image to Gallery:
+  <select name='image' multiple>
+    {{#each allArtwork}}
+    {{#if isInGallery}}
+    <option value="{{_id}}" selected='selected'>{{title}}</option>
+    {{else}}
+    <option value="{{_id}}">{{title}}</option>
+    {{/if}}
+    {{/each}}
+  </select>
+</label>   --}}
       <br>
       <br>
 <button type="submit">Sumbit</button>

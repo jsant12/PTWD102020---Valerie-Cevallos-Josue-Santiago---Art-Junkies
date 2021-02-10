@@ -32,7 +32,6 @@ router.get("/gallery", (req, res, next) => {
 
 });
 
-
 router.get('/gallery-new', (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
@@ -61,6 +60,15 @@ router.post('/gallery-new', (req, res, next) => {
     }
     Gallery.findById(req.params.galleryId)
     .then((galleryFromDB) => {
+      // Artwork.find().then((allArtwork) => {
+      //   allArtwork.forEach((singleArtwork) => {
+      //     galleryFromDB.image.forEach((onePieceOfArt) => {
+      //       if(singleArtwork._id.equals(onePieceOfArt)) {
+      //         singleArtwork.isInGallery = true;
+      //       }
+      //     })
+      //   })
+      // })
       res.render('gallery-edit', { galleryFromDB })
     })
     .catch((err) => console.log('error retrieving the Gallery', err))
