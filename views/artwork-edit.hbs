@@ -8,7 +8,7 @@
     </p>
 
 
-    <form action="/upload-edit/{{artworkFromDB._id}}" method="POST">
+    <form action="/artwork-edit/{{artworkFromDB._id}}" method="POST">
       <label>Title: <input type="text" name="title" value="{{artworkFromDB.title}}" />
       </label>
         <br>
@@ -20,7 +20,7 @@
         <button type="submit">Edit</button>
       </form>
 
-      <form action="/upload-delete/{{artworkFromDB._id}}" method="POST">
+      <form action="/artwork-delete/{{artworkFromDB._id}}" method="POST">
         <button>Delete</button>
       </form>
 
@@ -30,4 +30,4 @@
 
 
 
-    <a href="/upload"> Refresh </a>
+    <a href="/artwork"> Refresh </a>

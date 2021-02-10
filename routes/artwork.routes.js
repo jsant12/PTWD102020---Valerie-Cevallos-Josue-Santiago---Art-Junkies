@@ -15,22 +15,22 @@ const Artwork = require('../models/Artwork.model');
 
 //*************** UPLOAD ***************//
 
-router.get("/upload", (req, res, next) => {
+router.get("/artwork", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
   Artwork.find({ artist: req.session.currentUser}) 
   .then((artworkFromDB) => {
-    res.render('upload', { artworkFromDB })
+    res.render('artwork', { artworkFromDB })
   })
   // console.log(galleryFromDB)
   .catch((err) => console.log('Error, ', err))
     
-  // res.render('upload');
+  // res.render('artwork');
 });
 
 //****CREATE****//
-router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) => {
+router.post("/artwork", fileUploader.single("imageToUpload"), (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
@@ -41,29 +41,29 @@ router.post("/upload", fileUploader.single("imageToUpload"), (req, res, next) =>
   const { artist = (req.session.currentUser._id), title, medium, description, image } = req.body;
 
   Artwork.create({ artist, title, medium, description, image: req.file.path })
-    .then((newUpload) => {
-      res.redirect("/upload");
+    .then((newArtwork) => {
+      res.redirect("/artwork");
     })
     .catch((err) => console.log("Error while creating artwork: ", err));
 });
 
 //****UPDATE****//
-router.get("/upload-edit/:artworkId", (req, res, next) => {
+router.get("/artwork-edit/:artworkId", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
   Artwork.findById(req.params.artworkId) 
   .then((artworkFromDB) => {
     // console.log(galleryFromDB)
-    res.render('upload-edit', { artworkFromDB })
+    res.render('artwork-edit', { artworkFromDB })
   })
   
   .catch((err) => console.log('Error, ', err))
     
-  // res.render('upload');
+  // res.render('artwork');
 });
 
-router.post("/upload-edit/:artworkId", (req, res, next) => {
+router.post("/artwork-edit/:artworkId", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
@@ -72,14 +72,14 @@ router.post("/upload-edit/:artworkId", (req, res, next) => {
   .then((updatedArtFromDB) => {
     console.log("---------------",{updatedArtFromDB});
     
-    res.redirect('/upload');
+    res.redirect('/artwork');
   })
   .catch((err) => console.log("Error updating artwork: ", err));
 });
 
-router.post('/upload-delete/:artworkId', (req, res, next) => {
+router.post('/artwork-delete/:artworkId', (req, res, next) => {
     Artwork.findByIdAndRemove(req.params.artworkId)
-    .then(() => res.redirect('/upload'))
+    .then(() => res.redirect('/artwork'))
     .catch((err) => console.log('Error deleting artwork', err))
   });
   
