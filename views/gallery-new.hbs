@@ -17,6 +17,13 @@
   Gallery Theme:
   <input type="text" name="galleryTheme"/>
 </label>
+<label>Images:</label>
+<select name="image" multiple>
+  {{#each artworkFromDB}}
+  <option value="{{_id}}">{{title}}</option>
+  {{/each}}
+</select>
+
       <br>
       <br>
 <button type="submit">Sumbit</button>
