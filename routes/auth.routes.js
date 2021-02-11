@@ -97,7 +97,7 @@ router.post('/login', (req, res, next) => {
 
         req.session.currentUser = responseFromDB;
 
-        res.redirect('/profile');
+        res.redirect('/');
       } else {
         res.render('auth/login.hbs', { errorMessage: 'Incorrect password. Please try again.' });
       }

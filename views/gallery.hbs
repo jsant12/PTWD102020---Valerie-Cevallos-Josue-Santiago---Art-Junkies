@@ -1,39 +1,18 @@
-<h2>Gallery</h2>
-<h3>Title: {{ galleryFromDB.galleryTitle }}</h3>
-<h4>Description: {{ galleryFromDB.galleryDescription }}</h4>
-<h5>Theme: {{ galleryFromDB.galleryTheme }}</h5>
-
-<div>
-  {{#each galleryFromDB.image}}
-  Title: {{title}}
-  
-  <img src="{{title}}"
-  {{/each}}
-</div>
-
-
-
-{{!-- {{#each validImages}}
-<div>
-  <img src="{{" alt="">
-{{#if editable}}
-<form action="/gallery/delete/{{this._id}}" method="POST">
-<button>X</button>
-</form>
-{{/if}}
-  {{#if editable}}
-<form action="/gallery/edit/{{this._id}}">
-  <input type="text" value="{{galleryImage.title}}">
-  <button>Update</button>
-</form>
-  {{else}}
-  <h3>{{galleryImage.title}}</h3>
-  {{/if}}
-</div>
-{{/each}} --}}
-
-  {{!-- //filter - check all images in gallery, if any are undefined remove from view before displaying
-  {{!-- display the array of validImages (separate array of images)
-  --}}
-
-  
+      <hr>
+      <h3>Gallery Listings</h3
+      <br>
+      
+      {{!-- dropdown list to display the artists who have galleries
+      based on the selected artist, display their list of galleries --}}
+      {{#each allGalleriesfromDB}}
+      <div>
+      Artist: {{this.author.fname}} {{this.author.lname}}
+      <br>
+      Gallery Name: {{this.galleryTitle}}
+      <br>
+      Gallery Description: {{this.galleryDescription}}
+      <br>
+      Gallery Theme: {{this.galleryTheme}}
+      <br>
+      <br>
+      {{/each}}
