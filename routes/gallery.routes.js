@@ -104,9 +104,10 @@ router.get("/gallery-details/:galleryID", (req, res, next) => {
     res.redirect('/auth/login');
   }
   Gallery.findById(req.params.galleryID)
-  .populate("image") 
+  .populate("image")
+  .populate("author") 
   .then((galleryFromDB) => {
-    res.render('gallery', { galleryFromDB })
+    res.render('gallery-details', { galleryFromDB })
   })
   // console.log(galleryFromDB)
   .catch((err) => console.log('Error, ', err))
