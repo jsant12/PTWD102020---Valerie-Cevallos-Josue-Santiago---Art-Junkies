@@ -2,7 +2,7 @@
 <h3>Title: {{ galleryFromDB.galleryTitle }}</h3>
 <h4>Description: {{ galleryFromDB.galleryDescription }}</h4>
 <h5>Theme: {{ galleryFromDB.galleryTheme }}</h5>
-<p>Artist: {{userInSession.fname}} {{userInSession.lname}}</p>
+<p>Artist: {{galleryFromDB.author.fname}} {{galleryFromDB.author.lname}}</p>
 
 <div>
   {{#each galleryFromDB.image}}
@@ -13,8 +13,4 @@
   {{/each}}
 </div>
 
-{{#if userInSession}}
-<a href="/gallery-list/:galleryID">Return to Your Gallery List</a>
-{{else}}
 <a href="/gallery">Return to New Artists Galleries</a>
-{{/if}}
