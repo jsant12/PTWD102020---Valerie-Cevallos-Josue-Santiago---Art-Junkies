@@ -37,24 +37,19 @@ router.get("/profile-edit", (req, res, next) => {
     res.render('profile-edit');
 });
 
-router.post("/profile-edit", (req, res, next) => {
+router.post("/profile-edit", fileUploader.single("imageToUpload"),(req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-  User.findByIdAndUpdate(req.session.currentUser._id, req.body,{new:true})
+  const { fname, lname, email, profilePicture } = req.body;
+
+  User.findByIdAndUpdate(req.session.currentUser._id, { fname, lname, email, profilePicture: req.file.path },{new:true})
   .then((foundUserFromDB) => {
     req.session.currentUser = foundUserFromDB;
-    console.log({foundUserFromDB});
+    console.log(req.body);
     res.redirect('/profile');
   })
   .catch((err) => console.log("Error pulling User ID: ", err));
-
-  Gallery.find({ author: req.session.currentUser} )
-  .then((galleryFromDB) => {
-    console.log({galleryFromDB})
-    res.render('profile', { galleryFromDB })
-  })
-  .catch((err) => console.log('Error Updating Gallery Info: ', err))
 });
 
 //****DELETE****//

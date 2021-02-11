@@ -16,9 +16,7 @@
     </p>
     </form>
 
-    <form action="/logout" method="POST">
-<button type="submit">Logout</button>
-</form>
+
 {{else}}
     <p>><a href="auth/login.hbs">Return to Login Page</a></p>
     <p><a href="auth/register.hbs">Register Now</a></p>
@@ -29,26 +27,7 @@
 </form>
 
 <form action="/artwork" method="GET">
-  <button type="submit">Upload you Art!</button>
+  <button type="submit">Upload your Art!</button>
 </form>
       
-      <hr>
-      <h3>Gallery Information</h3>
-      <form action="/gallery-new" method="GET">
-      <button type="submit">Create New Gallery</button>
-      </form>
-      <br>
-      {{#each galleryFromDB}}
-      <div>Gallery Name: {{this.galleryTitle}}
-      <br>
-      Gallery Description: {{this.galleryDescription}}
-      <br>
-      Gallery Theme: {{this.galleryTheme}}
-      <br>
-      <form action="/gallery-edit/{{this._id}}" method="GET"><button>Edit</button></form>
-      <form action="/gallery-delete/{{this._id}}" method="POST"><button>Delete</button></form>
-      </div>
-      <hr>
-      {{/each}}
-
 <a href="/profile"> Refresh </a>
