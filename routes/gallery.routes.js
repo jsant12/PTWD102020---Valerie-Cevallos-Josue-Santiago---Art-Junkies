@@ -11,7 +11,19 @@ const Artwork = require('../models/Artwork.model');
 //required for file upload to Cloudinary
 const fileUploader = require("../configs/cloudinary.config");
 
+//*************MASTER GALLERY LIST**************/
+router.get('/gallery', (req, res, next) => {
+  Gallery.find()
+  .populate("author") 
+  .then((allGalleriesfromDB) => {
+      const sortedGalleries = allGalleriesfromDB.sort((a, b) => {
+          return a.author - b.author
+      });
 
+    res.render("gallery", { allGalleriesfromDB: sortedGalleries });
+  })
+  .catch((err) => console.log('Error displaying the galleries', err));
+});
 
 //*****************CREATE GALLERY*************/
 
@@ -87,23 +99,17 @@ router.post('/gallery-new', (req, res, next) => {
   //*************** GALLERY DETAILS***************//
 // const validImages = gallery.images.filter(image => image !== undefined)
 
-router.get("/gallery/:galleryID", (req, res, next) => {
-  // if(!req.session.currentUser) {
-  //   res.redirect('/auth/login');
-  // }
+router.get("/gallery-details/:galleryID", (req, res, next) => {
+  if(!req.session.currentUser) {
+    res.redirect('/auth/login');
+  }
   Gallery.findById(req.params.galleryID)
-  .populate("images") 
+  .populate("image") 
   .then((galleryFromDB) => {
     res.render('gallery', { galleryFromDB })
   })
   // console.log(galleryFromDB)
   .catch((err) => console.log('Error, ', err))
-  
-  // console.log('===========>', req.session.currentUser._id);
-  // const { galleryTitle, galleryDescription, galleryTheme } = req.body;
-  // console.log(req.body);
-  // res.render('gallery', { galleryTitle, galleryDescription, galleryTheme })
-
 });
 
   module.exports = router;

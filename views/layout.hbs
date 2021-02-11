@@ -11,6 +11,24 @@
   </head>
 
   <body>
+    <nav>
+      {{#if userInSession}}
+Welcome, {{userInSession.username}}&nbsp;
+<a href="/profile">View Profile</a>
+<form action="/logout" method="POST">
+  <button type="submit">
+    Logout
+  </button>
+</form>
+{{else}}
+<a href="auth/login">Login</a>&nbsp;
+<a href="auth/register">Register</a>
+{{/if}}
+
+
+
+
+    </nav>
     <div class="container">
       {{{body}}}
     </div>
