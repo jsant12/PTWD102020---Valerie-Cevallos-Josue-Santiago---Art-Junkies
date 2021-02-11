@@ -3,7 +3,7 @@
     
 
     
-    <form action="/profile-edit" method="POST">
+    <form action="/profile-edit" method="POST" enctype="multipart/form-data">
 <label>
   First Name:
   <input type="text" name="fname" value="{{userInSession.fname}}" />
@@ -15,16 +15,24 @@
 </label>
 <br>
 <label>
-  Email:
-  <input type="text" name="email" value="{{userInSession.email}}" />
+Email:
+<input type="text" name="email" value="{{userInSession.email}}" />
 </label>
-      <br>
-      <button type="submit">Sumbit</button>
-      
-    </form>
-<form action="/logout" method="POST">
-<button type="submit">Logout</button>
+<br>
+<label>
+Profile Picture:</label>
+
+  <img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic" />
+  <br>
+  <br>
+  <label>
+    Update Photo: 
+    <input type="file" name="imageToUpload" />
+  </label>
+<br>
+<button type="submit">Submit</button>
 </form>
+
 {{else}}
     <b>No user is logged in!<b>
 {{/if}}
