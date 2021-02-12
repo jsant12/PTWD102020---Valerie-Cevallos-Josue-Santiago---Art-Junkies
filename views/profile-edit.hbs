@@ -1,8 +1,21 @@
 {{#if userInSession}}
-    <h3>Welcome, {{userInSession.fname}} </h3>
+    <h2>Welcome, {{userInSession.fname}} </h2>
     
+<form action="/profile-picEdit" method="POST" enctype="multipart/form-data">    
 
-    
+<img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic" />
+<br />
+<br />
+<label>
+Change Profile Picture
+  <input type="file" name="imageToUpload" />
+</label>
+<button type="submit">
+  Update
+</button>
+    </form>
+<br />
+
     <form action="/profile-edit" method="POST" enctype="multipart/form-data">
 <label>
   First Name:
@@ -19,18 +32,11 @@ Email:
 <input type="text" name="email" value="{{userInSession.email}}" />
 </label>
 <br>
-<label>
-Profile Picture:</label>
 
-  <img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic" />
-  <br>
-  <br>
-  <label>
-    Update Photo: 
-    <input type="file" name="imageToUpload" />
-  </label>
+
+  
 <br>
-<button type="submit">Submit</button>
+<button type="submit">Update</button>
 </form>
 
 {{else}}
@@ -40,5 +46,3 @@ Profile Picture:</label>
 <form action="/profile-delete" method="POST">
   <button type="submit">Delete</button>
 </form>
-
-<a href="/profile"> Refresh </a>
