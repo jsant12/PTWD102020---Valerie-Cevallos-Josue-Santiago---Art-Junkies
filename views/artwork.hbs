@@ -10,6 +10,7 @@
 {{#each artworkFromDB}}
 <h3>Title: {{ title }}</h3>
 <h4>Description: {{ description }}</h4>
+<h4>Medium: {{ medium }}</h4>
 <img src="{{image}}" width="200px" alt="ProfilePic">
 <form action="/artwork-edit/{{this._id}}" method="GET">
   <button type="submit">
