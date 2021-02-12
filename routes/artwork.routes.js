@@ -14,14 +14,14 @@ const User = require('../models/User.model');
 const Artwork = require('../models/Artwork.model');
 
 //*************** UPLOAD ***************//
-
-router.get("/artwork", (req, res, next) => {
+//****CREATE****//
+router.get("/artwork-new", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
   Artwork.find({ artist: req.session.currentUser}) 
   .then((artworkFromDB) => {
-    res.render('artwork', { artworkFromDB })
+    res.render('artwork-new', { artworkFromDB })
   })
   // console.log(galleryFromDB)
   .catch((err) => console.log('Error, ', err))
@@ -29,8 +29,8 @@ router.get("/artwork", (req, res, next) => {
   // res.render('artwork');
 });
 
-//****CREATE****//
-router.post("/artwork", fileUploader.single("imageToUpload"), (req, res, next) => {
+
+router.post("/artwork-new", fileUploader.single("imageToUpload"), (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
@@ -77,6 +77,20 @@ router.post("/artwork-edit/:artworkId", (req, res, next) => {
   .catch((err) => console.log("Error updating artwork: ", err));
 });
 
+
+router.get("/artwork", (req, res, next) => {
+  if(!req.session.currentUser) {
+    res.redirect('/auth/login');
+  }
+  Artwork.find({ artist: req.session.currentUser}) 
+  .then((artworkFromDB) => {
+    res.render('artwork', { artworkFromDB })
+  })
+  // console.log(galleryFromDB)
+  .catch((err) => console.log('Error, ', err))
+    
+  // res.render('artwork');
+});
 router.post('/artwork-delete/:artworkId', (req, res, next) => {
     Artwork.findByIdAndRemove(req.params.artworkId)
     .then(() => res.redirect('/artwork'))

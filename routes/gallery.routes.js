@@ -100,9 +100,6 @@ router.post('/gallery-new', (req, res, next) => {
 // const validImages = gallery.images.filter(image => image !== undefined)
 
 router.get("/gallery-details/:galleryId", (req, res, next) => {
-  if(!req.session.currentUser) {
-    res.redirect('/gallery-details');
-  }
   Gallery.findById(req.params.galleryId)
   .populate("image")
   .populate("author") 

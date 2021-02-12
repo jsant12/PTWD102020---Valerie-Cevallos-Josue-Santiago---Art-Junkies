@@ -1,6 +1,6 @@
-<h2>Profile Information</h2>
+{{!-- <h2>Profile Information</h2> --}}
 {{#if userInSession}}
-    <h3>Welcome, {{userInSession.fname}} </h3>
+    <h2>Welcome, {{userInSession.fname}} </h2>
     
     <form action="/profile" method="POST">
     <p>
@@ -12,7 +12,7 @@
       <br>
       Email: {{userInSession.email}}
       <br>
-      Profile Picture: <img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic">
+      <img src="{{userInSession.profilePicture}}" width="200px" alt="ProfilePic">
     </p>
     </form>
 
@@ -23,11 +23,11 @@
 {{/if}}
 
 <form action="/profile-edit" method="GET">
-<button type="submit">Edit Profile</button>
+<button type="submit">Update Profile</button>
 </form>
 
 <form action="/artwork" method="GET">
-  <button type="submit">Upload your Art!</button>
+  <button type="submit">Manage your Artwork!</button>
 </form>
       
 <form action="/gallery-artist" method="GET">

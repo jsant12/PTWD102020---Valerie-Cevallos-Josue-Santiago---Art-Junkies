@@ -21,12 +21,7 @@ router.get("/profile", (req, res, next) => {
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-  Gallery.find({ author: req.session.currentUser} )
-  .then((galleryFromDB) => {
-    console.log({galleryFromDB})
-    res.render('profile', { galleryFromDB })
-  })
-  .catch((err) => console.log('Error retrieving Gallery Information', err))
+ res.render('profile');
 });
 
 //****UPDATE****//
@@ -41,9 +36,24 @@ router.post("/profile-edit", fileUploader.single("imageToUpload"),(req, res, nex
   if(!req.session.currentUser) {
     res.redirect('/auth/login');
   }
-  const { fname, lname, email, profilePicture } = req.body;
+  const { fname, lname, email } = req.body;
 
-  User.findByIdAndUpdate(req.session.currentUser._id, { fname, lname, email, profilePicture: req.file.path },{new:true})
+  User.findByIdAndUpdate(req.session.currentUser._id, { fname, lname, email },{new:true})
+  .then((foundUserFromDB) => {
+    req.session.currentUser = foundUserFromDB;
+    console.log(req.body);
+    res.redirect('/profile');
+  })
+  .catch((err) => console.log("Error pulling User ID: ", err));
+});
+
+router.post("/profile-picEdit", fileUploader.single("imageToUpload"),(req, res, next) => {
+  if(!req.session.currentUser) {
+    res.redirect('/auth/login');
+  }
+  const { profilePicture } = req.body;
+
+  User.findByIdAndUpdate(req.session.currentUser._id, { profilePicture: req.file.path },{new:true})
   .then((foundUserFromDB) => {
     req.session.currentUser = foundUserFromDB;
     console.log(req.body);
