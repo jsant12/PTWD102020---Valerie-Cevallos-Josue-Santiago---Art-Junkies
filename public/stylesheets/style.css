@@ -10,8 +10,6 @@ a {
 body {
   display: flex;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #e0d1a8;
   background-image: url('/images/papyrus.jpg');
   background-position: center;
@@ -75,6 +73,7 @@ body {
 .homepage {
   width: 100vw;
   height: 100vh;
+  padding: -5vw;
   background-image: url('/images/museum-of-fine-arts-boston-ma.jpg');
   background-position: center;
   background-repeat: no-repeat;
@@ -137,4 +136,23 @@ body {
 .gallery-box div {
   width: 100%;
   height: 61%;
+}
+
+.gallery-list {
+  display:flex;
+  flex-flow:column;
+  align-items:flex-start;
+}
+
+#rijks-display{
+  height: 20vw !important;
+}
+
+.top-adjustment{
+  margin-top: 4vw;
+  text-align: center;
+}
+
+#gallery-display{
+  margin-top: 4vw !important;
 }

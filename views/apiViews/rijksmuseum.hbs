@@ -1,15 +1,14 @@
+<div class="top-adjustment">
 <h2>Rijksmuseum</h2>
-
+<div class="gallery">
 {{#each apiValue}}
-<br>
+<div class="gallery-box" id="rijks-display">
   <h4>Title: {{title}}</h4>
   <p>Artist(s): {{principalOrFirstMaker}}</p>
-<br>
-
+<div>
   <a href="{{webImage.url}}" target="_blank"><img src="{{webImage.url}}" width="150px" alt=""></a>
-  <br>
-  <br>
-  <br>
-  <br /><br /><br />
+</div>
+</div>
 {{/each}}
-{{!--  --}}
+</div>
+</div>
