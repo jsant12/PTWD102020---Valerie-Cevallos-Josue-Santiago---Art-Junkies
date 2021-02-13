@@ -96,5 +96,5 @@ router.post('/artwork-delete/:artworkId', (req, res, next) => {
     .then(() => res.redirect('/artwork'))
     .catch((err) => console.log('Error deleting artwork', err))
   });
-  
+  // 
 module.exports = router;
