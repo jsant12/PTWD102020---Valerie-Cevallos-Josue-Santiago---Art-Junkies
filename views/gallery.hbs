@@ -1,20 +1,22 @@
-      <hr>
+      <div id="gallery-display">
       <h3>Aspiring Artist Galleries</h3
       <br>
       
       {{!-- dropdown list to display the artists who have galleries
       based on the selected artist, display their list of galleries --}}
-      
+      <div class="gallery-list">
       {{#each allGalleriesfromDB}}
       <div>
       Artist: {{this.author.fname}} {{this.author.lname}}
       <br>
-      <a href="gallery-details/{{this._id}}">Gallery Name: {{this.galleryTitle}}</a>
+      <a href="gallery-details/{{this._id}}">{{this.galleryTitle}}</a>
       <br>
-      Gallery Description: {{this.galleryDescription}}
+      Description: {{this.galleryDescription}}
       <br>
-      Gallery Theme: {{this.galleryTheme}}
+      Theme: {{this.galleryTheme}}
       <br>
       <br>
       </div>
       {{/each}}
+      </div>
+</div>
