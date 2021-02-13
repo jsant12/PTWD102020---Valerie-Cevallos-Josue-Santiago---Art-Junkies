@@ -4,6 +4,7 @@
       
       {{!-- dropdown list to display the artists who have galleries
       based on the selected artist, display their list of galleries --}}
+      
       {{#each allGalleriesfromDB}}
       <div>
       Artist: {{this.author.fname}} {{this.author.lname}}
@@ -15,5 +16,5 @@
       Gallery Theme: {{this.galleryTheme}}
       <br>
       <br>
+      </div>
       {{/each}}
-      {{!--  --}}

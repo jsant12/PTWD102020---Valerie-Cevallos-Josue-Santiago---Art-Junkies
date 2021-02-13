@@ -3,12 +3,16 @@
 <h5>Theme: {{ galleryFromDB.galleryTheme }}</h5>
 <p>Artist: {{galleryFromDB.author.fname}} {{galleryFromDB.author.lname}}</p>
 
-<div>
+<div class="gallery">
   {{#each galleryFromDB.image}}
+  <div class="gallery-box">
   Title: {{title}}<br>
   Description: {{description}}<br>
   Medium: {{medium}}<br>
-  <a href="{{image}}" target="_blank"><img src="{{image}}" alt{{title}} width="150px"></a><br><br>
+  <div>
+    <a href="{{image}}" target="_blank"><img src="{{image}}" alt{{title}} width="150px"></a>
+  </div>
+  </div>
   {{/each}}
 </div>
 
