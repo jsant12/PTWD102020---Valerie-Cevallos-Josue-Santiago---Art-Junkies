@@ -13,7 +13,11 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-color: #e0d1a8;
+  background-image: url('/images/papyrus.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .login {
@@ -59,14 +63,15 @@ body {
 
 .main-content {
   height: 100%;
-  margin: 4vw 0 0;
+  margin: -2vw 0 0;
   padding: 0;
   max-width: unset;
 }
 #app-title {
+  font-size: 175px;
   font-family: 'Lobster', cursive;
   color: #674ea7;
-}
+  -webkit-text-stroke: 2px #583496;}
 
 .homepage {
   width: 100vw;
@@ -75,12 +80,27 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #e0d1a8;
+}
+
+.homepage-content {
+  padding-top: 10vw;
+  font-family: 'Livvic', sans-serif;
+  font-size: 40px;
 }
 
 #navbarsExampleDefault > ul > li > ul {
   display: flex;
   align-items: center;
   width: 20vw;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+#navbarsExampleDefault > ul {
+  display: flex;
+  align-items: center;
+  width: 20vw;
+  justify-content: flex-start;
   flex-direction: row;
 }
