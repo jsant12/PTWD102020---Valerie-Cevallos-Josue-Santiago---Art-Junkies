@@ -7,7 +7,6 @@ a {
   color: #00B7FF;
 }
 
-html,
 body {
   display: flex;
   align-items: center;
@@ -103,4 +102,39 @@ body {
   width: 20vw;
   justify-content: flex-start;
   flex-direction: row;
+}
+
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  width: 75vw;
+}
+
+.gallery-box {
+  width: 13vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  align-items: center;
+  height: 13vw;
+  /* border: 1px solid black; */
+  margin: 2vw 1vw;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gallery-box div img {
+  width: 90%;
+  height: 95%;
+}
+.gallery-box div {
+  width: 100%;
+  height: 61%;
 }
