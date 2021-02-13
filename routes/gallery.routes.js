@@ -118,3 +118,4 @@ router.get("/gallery-artist/", (req, res, next) => {
   .catch((err) => console.log('Error, ', err))
 });
   module.exports = router;
+  // 
