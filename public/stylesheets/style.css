@@ -1,5 +1,5 @@
-/* body {
-  padding: 50px;
+body nav{
+  align-items: flex-start;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -9,16 +9,12 @@ a {
 
 html,
 body {
-  height: 100%;
-}
-
-body {
   display: flex;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
-} */
+}
 
 .login {
   display: flex;
@@ -55,4 +51,36 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.welcome {
+  color: white;
+}
+
+.main-content {
+  height: 100%;
+  margin: 4vw 0 0;
+  padding: 0;
+  max-width: unset;
+}
+#app-title {
+  font-family: 'Lobster', cursive;
+  color: #674ea7;
+}
+
+.homepage {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/images/museum-of-fine-arts-boston-ma.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#navbarsExampleDefault > ul > li > ul {
+  display: flex;
+  align-items: center;
+  width: 20vw;
+  justify-content: space-between;
+  flex-direction: row;
 }
