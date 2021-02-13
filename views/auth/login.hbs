@@ -1,15 +1,19 @@
-<h2>Login</h2>
+  <style>
+  body {
+  background-color: f5f5f5;
+  }
+  </style>
 
+<main class="form-signin"></main>
 <form action="/login" method="POST">
-
+    <h2 class="h3 mb-3 fw-normal">Please Login</h2>
     <label> Username:
-        <input type="username" name="username">
+        <input type="username" name="username" class="form-control" required autofocus>
     </label>
     <label> Password:
-        <input type="password" name="password">
+        <input type="password" name="password" class="form-control" required>
     </label>
-
-    <button type="submit">Login</button>
+    <button class="w-50 btn btn-lg btn-primary" type="submit">Login</button>
 
     <br />
     {{#if errorMessage}}
